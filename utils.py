@@ -5,18 +5,19 @@ import streamlit as st
 def open_ai_prompt():
         system_prompt = (
                         """Role: System
-                        You are an advanced IT helpdesk assistant designed to assist support agents by providing solutions to technical issues based on past resolved tickets.
-                        Your task is to analyze the incoming ticket details, retrieve relevant past tickets, and generate an effective resolution suggestion.
-                        
-                        Constraints:
+                        You are an IT helpdesk assistant designed to assist support agents by suggesting solutions to technical issues based on past tickets - "Resolution".
+                        Your task is to analyze the user entered ticket details and generate a resolution suggestion based on the past retrieved context tickets.
+                        Past retrieved tickets will have an Issue, Description and Resolution. 
 
-                        1. Provide ONLY resolution suggestion based on retrieved context
-                        2. Only use the retrieved context and do not fabricate information
-                        3. Keep the answer short and to the point—avoid unnecessary explanations.
-                        4. Avoid repetitive steps—ensure a structured approach.
-                        5. If the user question cannot be answered with the retrieved context reply saying "Insufficient Information"
-                        
+                        GUIDELINES:
+                        1. Provide ONLY resolution suggestion based ONLY on retrieved context.
+                        2. Never answer from your knowledge.
+                        3. Keep the answer short and to the point by avoiding unnecessary explanations.
+                        4. If the user question cannot be answered with the retrieved context respond strictly with: "No relevant similar ticket found for resolution suggestion"
+                        5. Avoid repetitive steps—ensure a structured approach.
+
                         {context}
+                        Based ONLY on the provided tickets, suggest possible solution to the following question:
                         Question: {input}
                         Helpful Answer:"""
                     )
@@ -43,11 +44,6 @@ def relevant_ticket_details(response, number_of_tickets):
 
             st.subheader(f"{ticket} -> {issue}")
             st.info(f"✅ {ticket_resolution}  \n 📝{resolution_status}  \n 📌{category}  \n 👩‍💻**Agent Name:** {agent_name}  \n 📅**Ticket Date:** {date}  \n 📝{description}")
-
-def response_generator(response):
-    for word in response.split(" "):
-        yield word + " "
-        time.sleep(0.05)
 
 def selectbox_styling():
 
@@ -83,4 +79,9 @@ def selectbox_styling():
             """,
             unsafe_allow_html=True
         )
+    
+def response_generator(response):
+    for word in response.split(" "):
+        yield word + " "
+        time.sleep(0.20)
     

@@ -48,7 +48,7 @@ class RagModel():
 
         if self.architecture == "openai":
             template = open_ai_prompt()
-            chat_model = ChatOpenAI(model=self.model, api_key = self.apikeys)
+            llm = ChatOpenAI(model=self.model, api_key = self.apikeys)
         else:
             template = (                           
                         """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
@@ -60,7 +60,7 @@ class RagModel():
                         1. Provide ONLY resolution suggestion based ONLY on retrieved context.
                         2. Never answer from your knowledge.
                         3. Keep the answer short and to the point by avoiding unnecessary explanations.
-                        4. If the user question cannot be answered with the retrieved context respond strictly with: "Insufficient Information"
+                        4. If the user question cannot be answered with the retrieved context respond strictly with: "No relevant similar ticket found for resolution suggestion"
                         5. Avoid repetitive steps—ensure a structured approach.
                     
                         {context}
@@ -70,13 +70,16 @@ class RagModel():
                         Helpful Answer:
                         <|eot_id|>\n<|begin_of_text|><|start_header_id|>assistant<|end_header_id|>"""
                         )
-            chat_model = Together(model=self.model, api_key = self.apikeys, temperature = 0.0)
+            llm = Together(model=self.model, api_key = self.apikeys, temperature = 0.0)
 
         prompt = PromptTemplate(
             template=template, input_variables=["context", "input"]
         )
 
-        question_answer_chain = create_stuff_documents_chain(chat_model, prompt)
+        
+        question_answer_chain = create_stuff_documents_chain(llm, prompt)
+        # This first retrieves relevant documents (past tickets) and merges retrieved docs into the prompt 
+        # and then formats them into a query prompt for the llm
         rag_chain = create_retrieval_chain(qdrant_retriever, question_answer_chain)
         rag_response = rag_chain.invoke({"input": user_input})
         return rag_response 

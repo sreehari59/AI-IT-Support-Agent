@@ -57,11 +57,7 @@ def IT_Helpdesk():
         df_melted = filtered_df.melt(var_name="Field", value_name="Value")
         st.write(df_melted)
         filtered_df.reset_index(inplace=True, drop=True)
-        
-        # user_query = f"""The issue user is facing is {filtered_df["Issue"][0]}.
-        #                 The detailed description of the ticket with the issue is {filtered_df["Description"][0]}
-        #                 The category of the ticket is {filtered_df["Category"][0]}"""
-        # st.info(f"📌Issue:  \n{user_query}")
+      
         user_query = f"""Issue: {filtered_df["Issue"][0]}\n  Description: {filtered_df["Description"][0]}"""
         st.info(f"📌{user_query}")
 
@@ -128,9 +124,9 @@ def Ticket_Uploader():
             st.write("Document Processed Successfully")
             st.write("Uploded the data in :", collection_name)
     
+
 pg = st.navigation([st.Page(IT_Helpdesk), st.Page(Ticket_Uploader)])
 pg.run()
 
 # For the foter
 st.caption("Powered by AI | Streamlining IT Helpdesks 🚀")
-
