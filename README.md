@@ -13,13 +13,13 @@ IT helpdesk agents often deal with a high volume of repetitive tickets, many of 
 This repository introduces an AI-driven solution to enhance helpdesk efficiency by leveraging historical ticket data. By analyzing previously resolved tickets, this system intelligently suggests relevant past solutions for new incoming tickets, helping support agents resolve issues faster and more effectively.
 
 # Features of Application
-- 🚀 Faster Resolution Times – Support Agents resolve tickets quickly
+- 🚀 Faster Resolution Times – Support Agents resolve tickets quickly (Supports "Qdrant Metadata filtering")
 - ✅ Transparent - Points out from where the relevant ticket is coming
 - 📌 Gracefully fails - If no relevant ticket was found the AI does not create an answer
 - 📊 Scalable & Adaptable – Can be easily integrated to customers setup
-- 💰 Cost Savings – Reduces redundant troubleshooting effort of Support Agents along with "Qdrant Metadata filtering"
+- 💰 Cost Savings – Reduces redundant troubleshooting effort of Support Agents 
 - 😊 Better Customer Experience – Reduced wait times for users
-
+  
 # Architecture
 
 <p align="center">
