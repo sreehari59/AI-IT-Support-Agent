@@ -14,23 +14,23 @@ This repository introduces an AI-driven solution to enhance helpdesk efficiency 
 
 # Features of Application
 - 🚀 Faster Resolution Times – Support Agents resolve tickets quickly
-- ✅Transparent - Points out from where the relevant ticket is coming
-- 📌Gracefully fails - If no relevant ticket was found the AI does not create an answer
+- ✅ Transparent - Points out from where the relevant ticket is coming
+- 📌 Gracefully fails - If no relevant ticket was found the AI does not create an answer
 - 📊 Scalable & Adaptable – Can be easily integrated to customers setup
-- 💰 Cost Savings – Reduces redundant troubleshooting effort of Support Agents
+- 💰 Cost Savings – Reduces redundant troubleshooting effort of Support Agents along with "Qdrant Metadata filtering"
 - 😊 Better Customer Experience – Reduced wait times for users
 
 # Architecture
 
 <p align="center">
-  <img src="images/Architecture.png" width="800" />
+  <img src="assets/Architecture.png" width="800" />
 </p>
 <p align="center">
     <b>Application Architecture</b> 
 </p>
 
 # Application
-[![Watch the video](images/app.png)](https://youtu.be/9eDWs87Rnok)
+[![Watch the video](assets/app.png)](https://youtu.be/NIPLIf37iyU)
 
 # Installation and Setup
 
